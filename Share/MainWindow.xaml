@@ -1,0 +1,63 @@
+﻿<Window x:Class="Share.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Share"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="470" Width="820" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" Icon="Image/ic_launcher.png" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid>
+        <!-- Define Columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"  Panel.ZIndex="2"  >
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+            </Grid.Effect>
+            <Border CornerRadius="30,0,0,30" BorderThickness="1" Background="#FF09798B" MouseDown="Grid" Margin="10,10,0,10">
+
+            </Border>
+
+            <TextBlock x:Name="CloseBtn" Text="x" HorizontalAlignment="Left" VerticalAlignment="Top"  FontWeight="Bold" FontSize="36" Width="50" Foreground="White" Height="50" Margin="349,10,-1,0" Padding="0" MouseEnter="Close_Hover" TextAlignment="Center" MouseLeave="Close_EndHover" Cursor="Hand" MouseDown="CloseWindow" Panel.ZIndex="5"/>
+            <TextBlock x:Name="Minimize" Text="-" HorizontalAlignment="Left" VerticalAlignment="Top"  FontWeight="Bold" FontSize="48" Width="50" Foreground="White" Height="53" Margin="299,10,0,0" Padding="0" MouseEnter="Close_Hover" TextAlignment="Center" MouseLeave="Close_EndHover" Cursor="Hand" MouseDown="Minimizebtn" Panel.ZIndex="5"/>
+
+            <ContentControl x:Name="MainFormControl"></ContentControl>
+            <Image x:Name="LogoSmall" Margin="20,20,330,380"  Source="Image/ic_launcher.png"/>
+            <TextBlock x:Name="TitleSmall" Text="Share" VerticalAlignment="Top"  FontWeight="Bold" FontSize="36" Foreground="White" Height="50" Margin="10,15,10,0" Padding="0" TextAlignment="Center" MouseDown="Grid"/>
+
+            <TextBlock x:Name="Copyright" Text="©Reindert Korver" VerticalAlignment="Bottom"  FontWeight="Bold" FontSize="14" Foreground="White" Height="24" Margin="10,0,10,10" Padding="0"  TextAlignment="Center"/>
+
+        </Grid>
+        <Grid Grid.Column="1" >
+
+            <Grid x:Name="LoginGrid" Panel.ZIndex="0" Height="400" Width="400" Margin="-700,0,0,0"  >
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+                </Grid.Effect>
+                <Border  CornerRadius="30,30,30,30" BorderThickness="1" Grid.ColumnSpan="2" Background="#FF1D8F85"  >
+
+                </Border>
+
+                <TextBlock x:Name="LoginText" RenderTransformOrigin="0.5,0.5" Text="Login" TextAlignment="Center" FontSize="24" Cursor="Hand" MouseDown="ShowLogin" FontWeight="Bold" Margin="0,179,-171,175" HorizontalAlignment="Right" Foreground="White" Width="399" >
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <ContentControl x:Name="LoginFormControl"></ContentControl>
+            </Grid>
+        </Grid>
+
+    </Grid>
+
+</Window>

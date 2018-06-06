@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Share.SignedInFormControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Share"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+    <Grid>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="Log out" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="48,345,52,18" Height="37" Width="300" FontSize="20" Background="{x:Null}" BorderBrush="White" Foreground="White" FontWeight="Bold" BorderThickness="2" Click="SignOutClick" Cursor="Hand"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Incoming" VerticalAlignment="Top" Height="37" Width="300" FontSize="20" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,15,0,0"/>
+        <Image x:Name="rect1" RenderTransformOrigin="0.5, 0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" Source="Image/ic_launcher2.png" Margin="60,5,0,0" MouseDown="RefreshButtonClick" >
+            <Image.RenderTransform>
+                <!-- giving the transform a name tells the framework not to freeze it -->
+                <RotateTransform x:Name="noFreeze" />
+            </Image.RenderTransform>
+            <Image.Resources>
+                <Storyboard x:Key="Restore">
+                    <DoubleAnimation To="0" Duration="0:0:0.25"/>
+                </Storyboard>
+                <Storyboard x:Key="Rotate">
+                    <DoubleAnimation
+            Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+            To="360" Duration="0:0:1" RepeatBehavior="Forever" />
+                </Storyboard>
+            </Image.Resources>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Image.MouseLeftButtonUp">
+                    <BeginStoryboard Storyboard="{StaticResource Rotate}"/>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <ListBox  x:Name="FileView" ItemContainerStyle="{DynamicResource ListboxItemStyle}" Margin="60,60,60,80"   ItemsSource="{Binding}" DisplayMemberPath="FileString" SelectedValuePath="ID" SelectionChanged="FileViewSelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+
+
+    </Grid>
+</UserControl>
